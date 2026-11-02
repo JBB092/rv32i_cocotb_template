@@ -6,9 +6,7 @@
 #   docker run --rm -it -v "${PWD}:/work" rv32i-cocotb
 #   (dentro del contenedor)  make test_cpu
 #
-# cocotb 2.x requiere Verilator >= 5.036; Ubuntu 24.04 solo trae 5.020 por apt,
-# así que Verilator se compila desde el código fuente en una etapa aparte.
-# Se puede cambiar la versión con:  docker build --build-arg VERILATOR_VERSION=v5.048 ...
+# NOTA: Para usar este Dockerfile, se requiere Docker instalado en el sistema host.
 
 ARG UBUNTU_VERSION=24.04
 
@@ -17,7 +15,7 @@ ARG UBUNTU_VERSION=24.04
 # ---------------------------------------------------------------------------
 FROM ubuntu:${UBUNTU_VERSION} AS verilator-build
 
-ARG VERILATOR_VERSION=v5.040
+ARG VERILATOR_VERSION=v5.052
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
